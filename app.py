@@ -1,6 +1,7 @@
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
+import config
 
 from utils import fetch_reply
 
@@ -32,8 +33,8 @@ def sms_reply():
 
 @app.route("/send", methods=['GET'])
 def send_msg():
-    account_sid = 'AC21ad6b4f62361a23ae96b3cc249c545b'
-    auth_token = '46a0a3beb3deabc859dc1b3283cef13a'
+    account_sid = config.ACC_ID
+    auth_token = config.AUTH_TOKEN
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
